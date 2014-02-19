@@ -1,0 +1,33 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="controlefinancas">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<!--USA AS CONFIGURACOES DE BANCO QUE EU FIZ NO JBOSS, POOL, DRIVER DE CONEXAO, USER PASS ETC-->
+		<jta-data-source>java:/fj25DS</jta-data-source>
+
+		<class>br.com.caelum.financas.modelo.Conta</class>
+		<class>br.com.caelum.financas.modelo.Movimentacao</class>
+		<!-- Configuracao de cache -->
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="false" />
+			
+			<!-- poderia ser: update, create, create-drop, none -->
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			
+			<!-- Habilitando cache de segundo nivel -->
+			<property name="hibernate.cache.use_second_level_cache" value="true"/>
+			<!-- Habilitando cache de queries -->
+			<property name="hibernate.cache_use_query_cache" value="true"/>
+			<!-- Habilitando o modulo de estatisticas -->
+			<property name="hibernate.generate_statistics" value="true"/>
+		</properties>
+	</persistence-unit>
+
+</persistence>
